@@ -21,8 +21,8 @@
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
-            background-color: #f8f8f8; /* Açık gri arka plan */
-            color: #333;
+            background-color: #F2F2F2; /* Açık gri arka plan */
+            color: #0D0D0D;
             overflow-x: hidden; /* Yatay kaydırmayı engelle */
         }
 
@@ -33,17 +33,19 @@
 
         /* Glassmorphism Effect for buttons */
         .glassmorphism-button {
-            background: rgba(255, 255, 255, 0.2);
+            background: #93ABBF;
+            color: #0D0D0D;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #8F9BA6;
+            box-shadow: 0 4px 6px rgba(38, 45, 64, 0.08);
             transition: all 0.3s ease;
         }
 
         .glassmorphism-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            background: #8F9BA6;
+            color: #F2F2F2;
+            box-shadow: 0 6px 8px rgba(38, 45, 64, 0.13);
         }
 
         /* Section transition animation (simulated with padding/margin and AOS) */
@@ -69,7 +71,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: #ffffff;
+            background-color: #F2F2F2;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -79,7 +81,7 @@
 
         .loader-tooth {
             font-size: 4rem;
-            color: #2563eb; /* Tailwind blue-600 */
+            color: #262D40;
             animation: spin 1.5s infinite linear;
         }
 
@@ -90,28 +92,30 @@
 
         /* Dark Mode */
         body.dark-mode {
-            background-color: #1a202c; /* Tailwind gray-900 */
-            color: #e2e8f0; /* Tailwind gray-200 */
+            background-color: #262D40;
+            color: #F2F2F2;
         }
 
         .dark-mode .header-top, .dark-mode .header-main {
-            background-color: #2d3748; /* Tailwind gray-800 */
-            color: #e2e8f0;
+            background-color: #262D40;
+            color: #F2F2F2;
         }
 
         .dark-mode .service-card, .dark-mode .accordion-item, .dark-mode .swiper-slide {
-            background-color: #2d3748;
-            color: #e2e8f0;
-            border-color: #4a5568;
+            background-color: #93ABBF;
+            color: #0D0D0D;
+            border-color: #8F9BA6;
         }
 
         .dark-mode .glassmorphism-button {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #8F9BA6;
+            border: 1px solid #93ABBF;
+            color: #F2F2F2;
         }
 
         .dark-mode .glassmorphism-button:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: #262D40;
+            color: #F2F2F2;
         }
 
         /* Parallax effect for hero section background */
