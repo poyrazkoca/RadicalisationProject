@@ -1,3 +1,6 @@
+<?php
+header("Content-Type: application/javascript");
+?>
 // JS extracted from index.html
 // AOS and Swiper initialization, FAQ accordion, mobile menu, dark mode, loader
 
