@@ -6,8 +6,8 @@
     <title>Diş Hekimi Savaş Koca</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Playfair Display, Lato, Montserrat, Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Lato:wght@400&family=Montserrat:wght@400&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- AOS CSS -->
@@ -19,11 +19,80 @@
     <style>
         /* Custom CSS */
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Lato', 'Montserrat', Arial, sans-serif;
             scroll-behavior: smooth;
-            background-color: #F2F2F2; /* Açık gri arka plan */
-            color: #0D0D0D;
-            overflow-x: hidden; /* Yatay kaydırmayı engelle */
+            background-color: #F2F2F2;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 48px;
+            letter-spacing: -0.5px;
+            color: #111;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+        }
+        h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            color: #222;
+        }
+        h2 {
+            font-size: 36px;
+        }
+        h3 {
+            font-size: 28px;
+        }
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 28px;
+            }
+            h3 {
+                font-size: 22px;
+            }
+        }
+        p, .content-text {
+            font-family: 'Lato', 'Montserrat', Arial, sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+        nav, .nav-links a {
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+        .glassmorphism-button, .appointment-button {
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            background: #1E90FF;
+            color: #fff;
+            border: none;
+            border-radius: 9999px;
+            box-shadow: 0 4px 16px rgba(30,144,255,0.08);
+            transition: all 0.3s;
+        }
+        .glassmorphism-button:hover, .appointment-button:hover {
+            background: rgba(30,144,255,0.7);
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(30,144,255,0.15);
+            backdrop-filter: blur(8px);
+        }
+        footer, .footer-text {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: #666;
         }
 
         /* Smooth Scroll */
@@ -195,20 +264,20 @@
             <!-- Logo -->
             <div class="flex items-center space-x-3">
                 <img src="dt. savas koca logo.png" alt="Diş Hekimi Logo" style="width:48px; height:48px; object-fit:contain;" />
-                <a href="#" class="text-2xl font-bold" style="color:#93ABBF;">Diş Hekimi Savaş Koca</a>
+                <a href="#" class="site-title">Diş Hekimi Savaş Koca</a>
             </div>
 
             <!-- Navigation Links (Desktop) -->
             <div class="nav-links hidden md:flex space-x-6">
-                <a href="#hero" class="font-medium" style="color:#F2F2F2;">Ana Sayfa</a>
-                <a href="#hakkimizda" class="font-medium" style="color:#F2F2F2;">Hakkımızda</a>
-                <a href="#hizmetlerimiz" class="font-medium" style="color:#F2F2F2;">Hizmetlerimiz</a>
-                <a href="#sss" class="font-medium" style="color:#F2F2F2;">S.S.S</a>
-                <a href="#iletisim" class="font-medium" style="color:#F2F2F2;">İletişim</a>
+                <a href="#hero">Ana Sayfa</a>
+                <a href="#hakkimizda">Hakkımızda</a>
+                <a href="#hizmetlerimiz">Hizmetlerimiz</a>
+                <a href="#sss">S.S.S</a>
+                <a href="#iletisim">İletişim</a>
             </div>
 
             <!-- Appointment Button (Desktop) -->
-            <a href="#iletisim" class="appointment-button hidden md:block px-6 py-3 rounded-full font-semibold glassmorphism-button" style="background-color:#93ABBF;color:#0D0D0D;">Randevu Al</a>
+            <a href="#iletisim" class="appointment-button hidden md:block px-6 py-3 glassmorphism-button">Randevu Al</a>
 
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
@@ -232,7 +301,7 @@
     <!-- Hero Section -->
     <section id="hero" class="hero-section text-center text-white py-20 md:py-32 flex items-center justify-center min-h-screen-75 bg-blue-700" data-aos="fade-up">
         <div class="container mx-auto px-4">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">Sağlıklı Gülüşler İçin Buradayız</h1>
+            <h1>Sağlıklı Gülüşler İçin Buradayız</h1>
             <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto drop-shadow-md">Diş Hekimi Savaş Koca kliniği olarak, en modern tedavi yöntemleri ve kişiye özel yaklaşımlarla gülüşünüzü yeniden şekillendiriyoruz.</p>
             <a href="#iletisim" class="px-8 py-4 bg-white text-blue-700 rounded-full text-lg font-semibold hover:bg-gray-100 transition duration-300 glassmorphism-button">Hemen Randevu Alın</a>
         </div>
@@ -241,11 +310,11 @@
     <!-- Hakkımızda Section -->
     <section id="hakkimizda" class="bg-white py-16" data-aos="fade-up">
         <div class="container mx-auto px-4 text-center max-w-4xl">
-            <h2 class="text-4xl font-bold mb-8" style="color:#262D40;">Hakkında</h2>
-            <p class="text-lg leading-relaxed" style="color:#0D0D0D;">
+            <h2>Hakkında</h2>
+            <p>
                 Diş Hekimi Savaş Koca Kliniği, Kastamonu'da modern diş hekimliği hizmetlerini en üst düzeyde sunmak amacıyla kurulmuştur. Kliniğimizde, hastalarımızın konforu ve sağlığı her zaman önceliğimizdir. Alanında uzman ekibimiz ve son teknoloji ekipmanlarımızla, implanttan ortodontiye, estetik diş hekimliğinden kanal tedavisine kadar geniş bir yelpazede hizmet vermekteyiz. Amacımız, her hastamıza özel çözümler sunarak sağlıklı ve estetik gülüşlere kavuşmalarını sağlamaktır.
             </p>
-            <p class="text-lg leading-relaxed mt-4" style="color:#0D0D0D;">
+            <p class="mt-4">
                 Hasta memnuniyetini esas alan yaklaşımımızla, tedavi süreçlerini şeffaf ve anlaşılır bir şekilde yönetiyor, her adımda hastalarımızı bilgilendiriyoruz. Diş Hekimi Savaş Koca olarak, sizlere güvenilir ve kaliteli bir diş hekimliği deneyimi sunmaktan gurur duyuyoruz.
             </p>
         </div>
@@ -454,9 +523,9 @@
 </main>
 
 <!-- Footer -->
-<footer style="background-color:#262D40; color:#F2F2F2;" class="py-8">
+<footer style="background-color:#262D40;" class="py-8">
     <div class="container mx-auto px-4 text-center">
-        <p>&copy; 2025 Diş Hekimi Savaş Koca - Tüm hakları saklıdır.</p>
+        <p class="footer-text">&copy; 2025 Diş Hekimi Savaş Koca – tüm hakları saklıdır</p>
     </div>
 </footer>
 
