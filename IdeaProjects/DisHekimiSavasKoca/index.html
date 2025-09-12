@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diş Hekimi Savaş Koca</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="dis sekli logo.png">
+    <style>
+        /* Custom CSS */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f8f8f8; /* Açık gri arka plan */
+            color: #333;
+            overflow-x: hidden; /* Yatay kaydırmayı engelle */
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism Effect for buttons */
+        .glassmorphism-button {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glassmorphism-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Section transition animation (simulated with padding/margin and AOS) */
+        section {
+            padding: 80px 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        /* Hover effects for cards */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Loader */
+        #loader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loader-tooth {
+            font-size: 4rem;
+            color: #2563eb; /* Tailwind blue-600 */
+            animation: spin 1.5s infinite linear;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #1a202c; /* Tailwind gray-900 */
+            color: #e2e8f0; /* Tailwind gray-200 */
+        }
+
+        .dark-mode .header-top, .dark-mode .header-main {
+            background-color: #2d3748; /* Tailwind gray-800 */
+            color: #e2e8f0;
+        }
+
+        .dark-mode .service-card, .dark-mode .accordion-item, .dark-mode .swiper-slide {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            border-color: #4a5568;
+        }
+
+        .dark-mode .glassmorphism-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .glassmorphism-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Parallax effect for hero section background */
+        .hero-section {
+            background-image: url('https://placehold.co/1920x1080/E0F2F7/2563EB?text=Diş+Kliniği+Arka+Plan'); /* Placeholder image */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Mobile menu specific styles */
+        #mobile-menu {
+            display: none; /* Hidden by default */
+        }
+
+        @media (max-width: 768px) {
+            .header-main .container {
+                flex-wrap: wrap;
+            }
+            .header-main .nav-links {
+                display: none; /* Hide desktop nav links */
+            }
+            .header-main .appointment-button {
+                display: none; /* Hide desktop appointment button */
+            }
+            #mobile-menu-button {
+                display: block; /* Show mobile menu button */
+            }
+            #mobile-menu {
+                display: flex; /* Show mobile menu when active */
+                flex-direction: column;
+                width: 100%;
+                background-color: #fff;
+                position: absolute;
+                top: 100%; /* Position below the header */
+                left: 0;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-radius: 0.5rem;
+            }
+            #mobile-menu a {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid #eee;
+                text-align: center;
+            }
+            #mobile-menu a:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Loader -->
+<div id="loader">
+    <img src="dis sekli logo.png" alt="Yükleniyor..." class="loader-tooth" style="width: 64px; height: 64px; object-fit: contain;" />
+</div>
+
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 shadow-md">
+    <!-- Top Contact Bar -->
+    <div class="header-top bg-blue-600 text-white text-sm py-2 hidden md:block">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <span><i class="fas fa-phone-alt mr-2"></i><a href="tel:0366xxxxxxx">0366xxxxxxx</a></span>
+                <span><i class="fas fa-clock mr-2"></i>Pzt - Cuma: 09:00 - 18:00</span>
+            </div>
+            <div>
+                <span><i class="fas fa-map-marker-alt mr-2"></i><a href="https://maps.app.goo.gl/example" target="_blank">Örnek Mah. Dişçi Sok. No: 5, Kastamonu</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <nav class="header-main bg-white py-4 shadow-lg">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <img src="dt. savas koca logo.png" alt="Diş Hekimi Logo" style="width:48px; height:48px; object-fit:contain;" />
+                <a href="#" class="text-2xl font-bold text-blue-700">Diş Hekimi Savaş Koca</a>
+            </div>
+
+            <!-- Navigation Links (Desktop) -->
+            <div class="nav-links hidden md:flex space-x-6">
+                <a href="#hero" class="text-gray-700 hover:text-blue-600 font-medium">Ana Sayfa</a>
+                <a href="#hakkimizda" class="text-gray-700 hover:text-blue-600 font-medium">Hakkımızda</a>
+                <a href="#hizmetlerimiz" class="text-gray-700 hover:text-blue-600 font-medium">Hizmetlerimiz</a>
+                <a href="#sss" class="text-gray-700 hover:text-blue-600 font-medium">S.S.S</a>
+                <a href="#iletisim" class="text-gray-700 hover:text-blue-600 font-medium">İletişim</a>
+            </div>
+
+            <!-- Appointment Button (Desktop) -->
+            <a href="#iletisim" class="appointment-button hidden md:block px-6 py-3 bg-blue-600 text-white rounded-full font-semibold glassmorphism-button">Randevu Al</a>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white w-full py-4 text-center">
+            <a href="#hero" class="block py-2 text-gray-700 hover:text-blue-600 font-medium">Ana Sayfa</a>
+            <a href="#hakkimizda" class="block py-2 text-gray-700 hover:text-blue-600 font-medium">Hakkında</a>
+            <a href="#hizmetlerimiz" class="block py-2 text-gray-700 hover:text-blue-600 font-medium">Hizmetler</a>
+            <a href="#sss" class="block py-2 text-gray-700 hover:text-blue-600 font-medium">S.S.S</a>
+            <a href="#iletisim" class="block py-2 text-gray-700 hover:text-blue-600 font-medium">İletişim</a>
+            <a href="#iletisim" class="block mt-4 px-6 py-3 bg-blue-600 text-white rounded-full font-semibold glassmorphism-button">Randevu Al</a>
+        </div>
+    </nav>
+</header>
+
+<main class="mt-24"> <!-- Adjust margin-top to account for fixed header height -->
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section text-center text-white py-20 md:py-32 flex items-center justify-center min-h-screen-75 bg-blue-700" data-aos="fade-up">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">Sağlıklı Gülüşler İçin Buradayız</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto drop-shadow-md">Diş Hekimi Savaş Koca kliniği olarak, en modern tedavi yöntemleri ve kişiye özel yaklaşımlarla gülüşünüzü yeniden şekillendiriyoruz.</p>
+            <a href="#iletisim" class="px-8 py-4 bg-white text-blue-700 rounded-full text-lg font-semibold hover:bg-gray-100 transition duration-300 glassmorphism-button">Hemen Randevu Alın</a>
+        </div>
+    </section>
+
+    <!-- Hakkımızda Section -->
+    <section id="hakkimizda" class="bg-white py-16" data-aos="fade-up">
+        <div class="container mx-auto px-4 text-center max-w-4xl">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8">Hakkında</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Diş Hekimi Savaş Koca Kliniği, Kastamonu'da modern diş hekimliği hizmetlerini en üst düzeyde sunmak amacıyla kurulmuştur. Kliniğimizde, hastalarımızın konforu ve sağlığı her zaman önceliğimizdir. Alanında uzman ekibimiz ve son teknoloji ekipmanlarımızla, implanttan ortodontiye, estetik diş hekimliğinden kanal tedavisine kadar geniş bir yelpazede hizmet vermekteyiz. Amacımız, her hastamıza özel çözümler sunarak sağlıklı ve estetik gülüşlere kavuşmalarını sağlamaktır.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mt-4">
+                Hasta memnuniyetini esas alan yaklaşımımızla, tedavi süreçlerini şeffaf ve anlaşılır bir şekilde yönetiyor, her adımda hastalarımızı bilgilendiriyoruz. Diş Hekimi Savaş Koca olarak, sizlere güvenilir ve kaliteli bir diş hekimliği deneyimi sunmaktan gurur duyuyoruz.
+            </p>
+        </div>
+    </section>
+
+    <!-- Hizmetlerimiz Section -->
+    <section id="hizmetlerimiz" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Hizmetlerimiz</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- İmplant -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://placehold.co/600x400/D1E9FF/2563EB?text=İmplant" alt="İmplant Tedavisi" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">İmplant</h3>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-clipboard-list mr-2 text-blue-500"></i><span class="font-bold">İşlem Süreci:</span> Eksik dişlerin yerine titanyum vidaların çene kemiğine yerleştirilmesi ve üzerine protez dişin takılması.</p>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-hourglass-half mr-2 text-blue-500"></i><span class="font-bold">Ne Kadar Sürede İyileşir?:</span> Kemik iyileşmesi 3-6 ay sürer, protez takıldıktan sonra tam adaptasyon birkaç hafta.</p>
+                    <p class="text-gray-600 text-sm mb-4"><i class="fas fa-check-circle mr-2 text-blue-500"></i><span class="font-bold">Öncesinde - Sonrasında Neler Yapılmalı?:</span> İyi ağız hijyeni, sigara ve alkol kaçınma. Sonrasında düzenli kontroller ve iyi fırçalama.</p>
+                    <p class="text-xs text-red-500 italic">“İşlemler Diş Hekimi Savaş Koca tarafından yapılmıştır, fotoğraflar bilgi vermek amaçlı kullanılmıştır.”</p>
+                </div>
+                <!-- Ortodonti -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://placehold.co/600x400/D1E9FF/2563EB?text=Ortodonti" alt="Ortodonti Tedavisi" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Ortodonti</h3>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-clipboard-list mr-2 text-blue-500"></i><span class="font-bold">İşlem Süreci:</span> Dişlerin ve çenelerin hizalanması için braketler veya şeffaf plaklar kullanılır.</p>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-hourglass-half mr-2 text-blue-500"></i><span class="font-bold">Ne Kadar Sürede İyileşir?:</span> Tedavi süresi 1-3 yıl arasında değişir, sonrasında pekiştirme tedavisi.</p>
+                    <p class="text-gray-600 text-sm mb-4"><i class="fas fa-check-circle mr-2 text-blue-500"></i><span class="font-bold">Öncesinde - Sonrasında Neler Yapılmalı?:</span> Diş temizliği, sert yiyeceklerden kaçınma. Sonrasında düzenli kontroller ve pekiştirici kullanımı.</p>
+                    <p class="text-xs text-red-500 italic">“İşlemler Diş Hekimi Savaş Koca tarafından yapılmıştır, fotoğraflar bilgi vermek amaçlı kullanılmıştır.”</p>
+                </div>
+                <!-- Kanal Tedavisi -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://placehold.co/600x400/D1E9FF/2563EB?text=Kanal+Tedavisi" alt="Kanal Tedavisi" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Kanal Tedavisi</h3>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-clipboard-list mr-2 text-blue-500"></i><span class="font-bold">İşlem Süreci:</span> Enfekte veya hasarlı diş pulpasının çıkarılması ve kök kanalının temizlenip doldurulması.</p>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-hourglass-half mr-2 text-blue-500"></i><span class="font-bold">Ne Kadar Sürede İyileşir?:</span> Genellikle birkaç gün içinde ağrı azalır, tam iyileşme birkaç hafta sürer.</p>
+                    <p class="text-gray-600 text-sm mb-4"><i class="fas fa-check-circle mr-2 text-blue-500"></i><span class="font-bold">Öncesinde - Sonrasında Neler Yapılmalı?:</span> Tedavi öncesi ağrı kesici. Sonrasında yumuşak gıdalar, tedavi edilen dişi kullanmaktan kaçınma.</p>
+                    <p class="text-xs text-red-500 italic">“İşlemler Diş Hekimi Savaş Koca tarafından yapılmıştır, fotoğraflar bilgi vermek amaçlı kullanılmıştır.”</p>
+                </div>
+                <!-- Diş Teli Tedavisi -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://placehold.co/600x400/D1E9FF/2563EB?text=Diş+Teli" alt="Diş Teli Tedavisi" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Diş Teli Tedavisi</h3>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-clipboard-list mr-2 text-blue-500"></i><span class="font-bold">İşlem Süreci:</span> Dişlerin doğru hizaya gelmesi için braket ve tellerle kademeli hareket ettirilmesi.</p>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-hourglass-half mr-2 text-blue-500"></i><span class="font-bold">Ne Kadar Sürede İyileşir?:</span> Tedavi süresi kişiye göre değişir, genellikle 1.5 - 2.5 yıl.</p>
+                    <p class="text-gray-600 text-sm mb-4"><i class="fas fa-check-circle mr-2 text-blue-500"></i><span class="font-bold">Öncesinde - Sonrasında Neler Yapılmalı?:</span> İyi ağız hijyeni, sert ve yapışkan gıdalardan kaçınma. Sonrasında düzenli kontroller ve pekiştirici kullanımı.</p>
+                    <p class="text-xs text-red-500 italic">“İşlemler Diş Hekimi Savaş Koca tarafından yapılmıştır, fotoğraflar bilgi vermek amaçlı kullanılmıştır.”</p>
+                </div>
+                <!-- Diş Beyazlatma -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="500">
+                    <img src="https://placehold.co/600x400/D1E9FF/2563EB?text=Diş+Beyazlatma" alt="Diş Beyazlatma" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Diş Beyazlatma</h3>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-clipboard-list mr-2 text-blue-500"></i><span class="font-bold">İşlem Süreci:</span> Diş yüzeyindeki lekelerin özel jeller ve ışıkla giderilmesi.</p>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-hourglass-half mr-2 text-blue-500"></i><span class="font-bold">Ne Kadar Sürede İyileşir?:</span> Tek seansta sonuç alınır, kalıcılığı kişisel bakıma bağlı 6 ay - 2 yıl.</p>
+                    <p class="text-gray-600 text-sm mb-4"><i class="fas fa-check-circle mr-2 text-blue-500"></i><span class="font-bold">Öncesinde - Sonrasında Neler Yapılmalı?:</span> İşlem öncesi diş temizliği. Sonrasında ilk 48 saat renkli yiyecek ve içeceklerden kaçınma.</p>
+                    <p class="text-xs text-red-500 italic">“İşlemler Diş Hekimi Savaş Koca tarafından yapılmıştır, fotoğraflar bilgi vermek amaçlı kullanılmıştır.”</p>
+                </div>
+                <!-- Dolgu -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="600">
+                    <img src="https://placehold.co/600x400/D1E9FF/2563EB?text=Dolgu" alt="Dolgu Tedavisi" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Dolgu</h3>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-clipboard-list mr-2 text-blue-500"></i><span class="font-bold">İşlem Süreci:</span> Çürük dişin temizlenip boşluğun kompozit veya amalgam gibi malzemelerle doldurulması.</p>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-hourglass-half mr-2 text-blue-500"></i><span class="font-bold">Ne Kadar Sürede İyileşir?:</span> İşlem hemen sonrası kullanıma uygun, hassasiyet birkaç gün sürebilir.</p>
+                    <p class="text-gray-600 text-sm mb-4"><i class="fas fa-check-circle mr-2 text-blue-500"></i><span class="font-bold">Öncesinde - Sonrasında Neler Yapılmalı?:</span> Anestezi sonrası uyuşukluk geçene kadar yemek yememe. Sonrasında iyi ağız hijyeni.</p>
+                    <p class="text-xs text-red-500 italic">“İşlemler Diş Hekimi Savaş Koca tarafından yapılmıştır, fotoğraflar bilgi vermek amaçlı kullanılmıştır.”</p>
+                </div>
+                <!-- Diş Çekimi -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="700">
+                    <img src="https://placehold.co/600x400/D1E9FF/2563EB?text=Diş+Çekimi" alt="Diş Çekimi" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Diş Çekimi</h3>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-clipboard-list mr-2 text-blue-500"></i><span class="font-bold">İşlem Süreci:</span> Hasarlı veya enfekte olmuş dişin ağızdan çıkarılması.</p>
+                    <p class="text-gray-600 text-sm mb-2"><i class="fas fa-hourglass-half mr-2 text-blue-500"></i><span class="font-bold">Ne Kadar Sürede İyileşir?:</span> İlk 24-48 saat önemlidir, tam iyileşme 1-2 hafta sürebilir.</p>
+                    <p class="text-gray-600 text-sm mb-4"><i class="fas fa-check-circle mr-2 text-blue-500"></i><span class="font-bold">Öncesinde - Sonrasında Neler Yapılmalı?:</span> İşlem öncesi yemek yeme. Sonrasında gazlı bezle baskı, buz kompresi, sigara ve alkol kaçınma, yumuşak gıdalar.</p>
+                    <p class="text-xs text-red-500 italic">“İşlemler Diş Hekimi Savaş Koca tarafından yapılmıştır, fotoğraflar bilgi vermek amaçlı kullanılmıştır.”</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hasta Yorumları Section (Swiper Carousel) -->
+    <section id="yorumlar" class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Hasta Yorumları</h2>
+            <div class="swiper mySwiper" data-aos="fade-up" data-aos-delay="100">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide bg-gray-50 rounded-lg shadow-md p-8 text-center border border-gray-200">
+                        <p class="text-lg italic text-gray-700 mb-4">"Diş Hekimi Savaş Koca ve ekibi harika! Kanal tedavim sorunsuz geçti, hiç ağrı hissetmedim. Kesinlikle tavsiye ederim."</p>
+                        <p class="font-semibold text-gray-800">- Ayşe Yılmaz</p>
+                    </div>
+                    <div class="swiper-slide bg-gray-50 rounded-lg shadow-md p-8 text-center border border-gray-200">
+                        <p class="text-lg italic text-gray-700 mb-4">"Ortodonti tedavim sayesinde gülüşüm tamamen değişti. Kliniğin sıcak atmosferi ve profesyonel yaklaşımları için teşekkürler."</p>
+                        <p class="font-semibold text-gray-800">- Mehmet Demir</p>
+                    </div>
+                    <div class="swiper-slide bg-gray-50 rounded-lg shadow-md p-8 text-center border border-gray-200">
+                        <p class="text-lg italic text-gray-700 mb-4">"İmplant tedavisi konusunda çok endişeliydim ama Savaş Bey sayesinde tüm korkularım geçti. Sonuç mükemmel!"</p>
+                        <p class="font-semibold text-gray-800">- Zeynep Can</p>
+                    </div>
+                    <div class="swiper-slide bg-gray-50 rounded-lg shadow-md p-8 text-center border border-gray-200">
+                        <p class="text-lg italic text-gray-700 mb-4">"Diş beyazlatma işlemi sonrası dişlerim bembeyaz oldu. Çok memnun kaldım, herkese öneririm."</p>
+                        <p class="font-semibold text-gray-800">- Ali Veli</p>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination mt-8"></div>
+                <!-- Add Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sıkça Sorulan Sorular (FAQ) Section -->
+    <section id="sss" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Sıkça Sorulan Sorular</h2>
+            <div class="space-y-4">
+                <!-- Soru 1 -->
+                <div class="accordion-item bg-white rounded-lg shadow-md border border-gray-200" data-aos="fade-up" data-aos-delay="100">
+                    <button class="accordion-header w-full text-left p-5 font-semibold text-lg text-gray-800 flex justify-between items-center focus:outline-none">
+                        Diş teli ne kadar sürede sonuç verir?
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content p-5 text-gray-700 hidden border-t border-gray-200">
+                        Diş teli tedavisinin süresi, kişinin diş yapısına, yaşa ve tedavinin karmaşıklığına göre değişmekle birlikte, genellikle 1 ila 3 yıl arasında sürer. Bazı basit vakalarda daha kısa sürebilirken, karmaşık durumlarda bu süre uzayabilir. Tedavi sonunda pekiştirme tedavisi de önemlidir.
+                    </div>
+                </div>
+                <!-- Soru 2 -->
+                <div class="accordion-item bg-white rounded-lg shadow-md border border-gray-200" data-aos="fade-up" data-aos-delay="200">
+                    <button class="accordion-header w-full text-left p-5 font-semibold text-lg text-gray-800 flex justify-between items-center focus:outline-none">
+                        Kanal tedavisi sonrası ağrı normal mi?
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content p-5 text-gray-700 hidden border-t border-gray-200">
+                        Kanal tedavisinden sonra hafif bir ağrı veya hassasiyet hissetmek normaldir. Bu durum genellikle birkaç gün içinde kendiliğinden geçer. Ağrı kesicilerle kontrol altına alınabilir. Ancak şiddetli veya uzun süreli ağrı yaşarsanız mutlaka diş hekiminizle iletişime geçmelisiniz.
+                    </div>
+                </div>
+                <!-- Soru 3 -->
+                <div class="accordion-item bg-white rounded-lg shadow-md border border-gray-200" data-aos="fade-up" data-aos-delay="300">
+                    <button class="accordion-header w-full text-left p-5 font-semibold text-lg text-gray-800 flex justify-between items-center focus:outline-none">
+                        Diş beyazlatma kalıcı mı?
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content p-5 text-gray-700 hidden border-t border-gray-200">
+                        Diş beyazlatma işlemi kalıcı değildir. Beyazlatmanın etkisi, kişinin ağız hijyenine, beslenme alışkanlıklarına (kahve, çay, kırmızı şarap tüketimi gibi) ve sigara kullanımına bağlı olarak değişir. Genellikle 6 ay ile 2 yıl arasında etkisini korur. Belirli aralıklarla tekrarlanması gerekebilir.
+                    </div>
+                </div>
+                <!-- Soru 4 -->
+                <div class="accordion-item bg-white rounded-lg shadow-md border border-gray-200" data-aos="fade-up" data-aos-delay="400">
+                    <button class="accordion-header w-full text-left p-5 font-semibold text-lg text-gray-800 flex justify-between items-center focus:outline-none">
+                        Çekim sonrası dikkat edilmesi gerekenler nelerdir?
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content p-5 text-gray-700 hidden border-t border-gray-200">
+                        Diş çekimi sonrası ilk 24 saat çok önemlidir. Kanamanın durması için gazlı bezi 30-45 dakika ısırmalısınız. İlk birkaç saat yemek yememeli, sıcak içeceklerden ve alkolden kaçınmalısınız. Sigara içmemeli, pipet kullanmamalı ve çekim bölgesini fırçalamamalısınız. Yumuşak ve ılık gıdalar tüketmeli, doktorunuzun önerdiği ilaçları düzenli kullanmalısınız.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim Section -->
+    <section id="iletisim" class="bg-blue-700 text-white py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">İletişim</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- İletişim Formu -->
+                <div data-aos="fade-right">
+                    <h3 class="text-2xl font-semibold mb-6">Bize Ulaşın</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-1">Adınız Soyadınız</label>
+                            <input type="text" id="name" name="name" class="w-full p-3 rounded-md bg-white bg-opacity-20 border border-white border-opacity-30 placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white text-white" placeholder="Adınız">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-1">E-posta Adresiniz</label>
+                            <input type="email" id="email" name="email" class="w-full p-3 rounded-md bg-white bg-opacity-20 border border-white border-opacity-30 placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white text-white" placeholder="E-posta Adresiniz">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium mb-1">Telefon Numaranız</label>
+                            <input type="tel" id="phone" name="phone" class="w-full p-3 rounded-md bg-white bg-opacity-20 border border-white border-opacity-30 placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white text-white" placeholder="Telefon Numaranız">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-1">Mesajınız</label>
+                            <textarea id="message" name="message" rows="4" class="w-full p-3 rounded-md bg-white bg-opacity-20 border border-white border-opacity-30 placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white text-white" placeholder="Mesajınızı buraya yazın..."></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-white text-blue-700 rounded-full font-semibold hover:bg-gray-100 transition duration-300 glassmorphism-button">Mesaj Gönder</button>
+                    </form>
+                </div>
+
+                <!-- İletişim Bilgileri -->
+                <div data-aos="fade-left">
+                    <h3 class="text-2xl font-semibold mb-6">İletişim Bilgileri</h3>
+                    <div class="space-y-4">
+                        <p class="flex items-center text-lg"><i class="fas fa-map-marker-alt mr-3 text-2xl"></i><a href="https://maps.app.goo.gl/example" target="_blank">Örnek Mah. Dişçi Sok. No: 5, Kastamonu</a></p>
+                        <p class="flex items-center text-lg"><i class="fas fa-phone-alt mr-3 text-2xl"></i><a href="tel:0366xxxxxxx">0366xxxxxxx</a></p>
+                        <p class="flex items-center text-lg"><i class="fas fa-envelope mr-3 text-2xl"></i><a href="mailto:info@dishekimisavaskoca.com">info@dishekimisavaskoca.com</a></p>
+                    </div>
+                    <h3 class="text-2xl font-semibold mt-8 mb-4">Sosyal Medya</h3>
+                    <div class="flex space-x-6">
+                        <a href="https://www.instagram.com/example" target="_blank" class="text-white hover:text-gray-200 transition duration-300"><i class="fab fa-instagram text-3xl"></i></a>
+                        <a href="https://wa.me/905xxxxxxxxx" target="_blank" class="text-white hover:text-gray-200 transition duration-300"><i class="fab fa-whatsapp text-3xl"></i></a>
+                        <a href="https://maps.app.goo.gl/example" target="_blank" class="text-white hover:text-gray-200 transition duration-300"><i class="fas fa-map-marked-alt text-3xl"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+        <p>&copy; 2025 Diş Hekimi Savaş Koca - Tüm hakları saklıdır.</p>
+    </div>
+</footer>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true, // Animasyonlar sadece bir kez çalışsın
+        });
+
+        // Initialize Swiper
+        const swiper = new Swiper('.mySwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 40,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 50,
+                },
+            },
+        });
+
+        // Accordion functionality for FAQ
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('i');
+
+                // Close all other open accordions
+                accordionHeaders.forEach(otherHeader => {
+                    if (otherHeader !== header) {
+                        const otherContent = otherHeader.nextElementSibling;
+                        const otherIcon = otherHeader.querySelector('i');
+                        if (!otherContent.classList.contains('hidden')) {
+                            otherContent.classList.add('hidden');
+                            otherIcon.classList.remove('rotate-180');
+                        }
+                    }
+                });
+
+                // Toggle current accordion
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Hide mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Dark Mode Toggle (Optional)
+        const darkModeToggle = document.createElement('button');
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        darkModeToggle.className = 'fixed bottom-4 right-4 bg-gray-700 text-white p-3 rounded-full shadow-lg z-50 hover:bg-gray-900 transition duration-300';
+        document.body.appendChild(darkModeToggle);
+
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+
+        // Loader hiding after page load
+        const loader = document.getElementById('loader');
+        window.addEventListener('load', () => {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500); // Wait for opacity transition to finish
+        });
+    });
+</script>
+</body>
+</html>
