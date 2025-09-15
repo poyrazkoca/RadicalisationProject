@@ -16,21 +16,5 @@ baBtn.addEventListener('click', () => {
   }
   showingBefore = !showingBefore;
 });
-    if (offsetX < 0) offsetX = 0;
-    if (offsetX > rect.width) offsetX = rect.width;
-    const percentage = (offsetX / rect.width) * 100;
-    setSlider(percentage);
-});
-
-// Touch support for mobile
-sliderHandle.addEventListener('touchstart', (e) => {
-    isDragging = true;
-    e.preventDefault();
-});
-window.addEventListener('touchend', () => {
-    isDragging = false;
-});
 // ...existing code...
-
-// Initialize at 50%
-setSlider(50);
+// ...existing code...
