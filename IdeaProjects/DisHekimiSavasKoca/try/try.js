@@ -8,13 +8,11 @@ baBtn.addEventListener('click', () => {
   if (showingBefore) {
     baImg.src = 'after.JPG';
     baImg.alt = 'After';
-    baBtn.textContent = 'Show Before';
+    baBtn.textContent = '🡸 Öncesini Göster';
   } else {
     baImg.src = 'before.JPG';
     baImg.alt = 'Before';
-    baBtn.textContent = 'Show After';
+    baBtn.textContent = 'Sonrasını Göster 🡺';
   }
   showingBefore = !showingBefore;
 });
-// ...existing code...
-// ...existing code...
