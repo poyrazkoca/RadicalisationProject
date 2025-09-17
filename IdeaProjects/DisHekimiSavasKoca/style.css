@@ -3,7 +3,7 @@ body {
     font-family: 'Lato', 'Montserrat', Arial, sans-serif;
     scroll-behavior: smooth;
     background-color: #F2F2F2;
-    color: #333;
+    color: #181818;
     overflow-x: hidden;
 }
 h1 {
@@ -11,7 +11,7 @@ h1 {
     font-weight: 600;
     font-size: 48px;
     letter-spacing: -0.5px;
-    color: #111;
+    color: #0a0a0a;
 }
 @media (max-width: 768px) {
     h1 { font-size: 32px; }
@@ -19,7 +19,7 @@ h1 {
 h2, h3 {
     font-family: 'Playfair Display', serif;
     font-weight: 500;
-    color: #222;
+    color: #181818;
 }
 h2 { font-size: 36px; }
 h3 { font-size: 28px; }
@@ -32,7 +32,7 @@ p, .content-text {
     font-weight: 400;
     font-size: 18px;
     line-height: 1.6;
-    color: #333;
+    color: #222;
 }
 nav, .nav-links a {
     font-family: 'Poppins', Arial, sans-serif;
