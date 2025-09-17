@@ -1,3 +1,61 @@
+/* Mobile Responsive Enhancements */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        padding: 0 4px;
+    }
+    h1 {
+        font-size: 28px;
+        text-align: center;
+        padding: 0 4px;
+    }
+    h2 {
+        font-size: 22px;
+        text-align: center;
+        padding: 0 4px;
+    }
+    h3 {
+        font-size: 18px;
+        text-align: center;
+        padding: 0 4px;
+    }
+    p, .content-text {
+        font-size: 15px;
+        padding: 0 2px;
+    }
+    .hero-section {
+        min-height: 220px;
+        background-attachment: scroll;
+        padding: 32px 0 16px 0;
+    }
+    .service-card, .accordion-item, .swiper-slide {
+        margin: 8px 0;
+        padding: 12px 8px;
+        font-size: 15px;
+    }
+    .glassmorphism-button, .appointment-button {
+        font-size: 15px;
+        padding: 8px 18px;
+        margin: 8px 0;
+        width: 100%;
+        border-radius: 8px;
+    }
+    .footer-text {
+        font-size: 13px;
+        text-align: center;
+        padding: 8px 2px;
+    }
+    img, .loader-tooth {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+    .container {
+        padding: 0 6px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
 /* Custom CSS extracted from index.html */
 body {
     font-family: 'Lato', 'Montserrat', Arial, sans-serif;
