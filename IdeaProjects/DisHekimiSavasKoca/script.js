@@ -37,7 +37,18 @@ document.addEventListener('DOMContentLoaded', function() {
         },
     });
 
-    // Accordion functionality for FAQ
+    // Accordion functionality for Hizmetlerimiz
+    const accordionBtns = document.querySelectorAll('.modern-accordion .accordion-btn');
+    accordionBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const item = btn.parentElement;
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('.modern-accordion .accordion-item').forEach(i => i.classList.remove('active'));
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
     const accordionHeaders = document.querySelectorAll('.accordion-header');
     accordionHeaders.forEach(header => {
         header.addEventListener('click', () => {
