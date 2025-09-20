@@ -1,3 +1,19 @@
+/* Color variables for day and dark mode */
+:root {
+    --background-main: #f0f0f0;
+    --background-card: #fff;
+    --text-main: #222;
+    --accent: #0078d4;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-main: #f0f0f0;
+        --background-card: #fff;
+        --text-main: #222;
+        --accent: #0078d4;
+    }
+}
 /* Modern Accordion Styles for Hizmetlerimiz */
 .modern-accordion {
     display: flex;
