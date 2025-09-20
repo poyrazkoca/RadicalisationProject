@@ -1,0 +1,83 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f0f0f0;
+  margin: 0;
+  min-height: 100vh;
+}
+.islem-list {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  margin-top: 64px;
+}
+.islem-btn {
+  padding: 16px 40px;
+  font-size: 1.2rem;
+  border-radius: 16px;
+  border: none;
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  backdrop-filter: blur(8px);
+  color: #0078d4;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.islem-btn:hover {
+  background: rgba(0,120,212,0.15);
+  color: #005fa3;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px;
+  max-width: 600px;
+  width: 90vw;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  font-size: 2rem;
+  color: #0078d4;
+  cursor: pointer;
+}
+.photo-group {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.photo-group img {
+  max-width: 180px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: filter 0.5s;
+  filter: grayscale(100%);
+}
+.photo-group img:hover {
+  filter: grayscale(0);
+}
+.details {
+  margin-top: 16px;
+}
+.details h3 {
+  margin-bottom: 8px;
+  color: #0078d4;
+}
+.details ul {
+  padding-left: 20px;
+}
