@@ -4,17 +4,25 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="try.css" />
-        <title>My Website</title>
+        <title>Before After Effect</title>
     </head>
     <body>
-        <div class="card">
-            <img src="before.JPG" alt="Before" />
-            <span class="title">NATURE</span>
+        <div class="ba-wrapper">
+            <div class="ba-image-container">
+                <div class="ba-img-wrapper">
+                    <img src="before.JPG" alt="Before" class="ba-img ba-img-before" />
+                    <div class="ba-img-overlay" id="ba-overlay">
+                        <img src="after.JPG" alt="After" class="ba-img ba-img-after" />
+                    </div>
+                    <div class="ba-slider" id="ba-slider"></div>
+                </div>
+            </div>
+            <div class="ba-labels">
+                <span class="ba-label ba-label-left">Öncesi</span>
+                <span class="ba-label ba-label-right">Sonrası</span>
+            </div>
         </div>
-        <div class="card">
-            <img src="after.JPG" alt="After" />
-            <span class="title">RESULT</span>
-        </div>
+        <script src="try.js"></script>
     </body>
 </html>
     <div class="ba-toggle">
