@@ -81,14 +81,23 @@ body {
 
 
 .ba-btn-group {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    position: relative;
     width: 100%;
+    height: 48px;
     margin-bottom: 24px;
 }
 .ba-btn-group .ba-btn {
     min-width: 180px;
+    position: absolute;
+    top: 0;
+}
+.ba-btn-group .left-btn {
+    left: 0;
+    justify-content: flex-start;
+}
+.ba-btn-group .right-btn {
+    right: 0;
+    justify-content: flex-end;
 }
 
 .ba-btn {
