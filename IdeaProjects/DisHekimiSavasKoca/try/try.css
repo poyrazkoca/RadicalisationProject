@@ -3,79 +3,76 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    body {
-        background: #eaeaea;
-        min-height: 100vh;
-        margin: 0;
-        font-family: 'Inter', 'Poppins', Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    filter: grayscale(100%);
+    transition: filter 0.5s, transform 0.5s;
+}
 
-    .ba-wrapper {
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 1px 6px rgba(0,0,0,0.04);
-        padding: 12px 8px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-        min-width: 220px;
-    }
+#ba-img:hover {
+    filter: grayscale(0);
+    transform: scale(1.05);
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
 
-    .ba-btn-group {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 8px;
-    }
+/* Modern Before/After Toggle Styles */
+.ba-wrapper {
+    width: 80%;
+    max-width: 500px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    padding: 32px 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    .ba-btn {
-        padding: 4px 16px;
-        font-size: 0.95rem;
-        border: none;
-        border-radius: 5px;
-        background: #1976d2;
-        color: #fff;
-        font-weight: 500;
-        cursor: pointer;
-        box-shadow: none;
-        transition: background 0.2s;
-        min-width: 120px;
-    }
-    .ba-btn:hover {
-        background: #1565c0;
-    }
+.ba-image-container {
+    width: 100%;
+    aspect-ratio: 4/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
 
-    .ba-image-center {
-        width: 100vw;
-        max-width: 420px;
-        aspect-ratio: 4/3;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 6px;
-        overflow: hidden;
-        box-shadow: none;
-        background: #fafafa;
-    }
+#ba-img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s;
+    background: #f8f8f8;
+}
 
-    #ba-img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        display: block;
-        filter: grayscale(100%);
-        transition: filter 0.5s, transform 0.5s;
-        background: none;
-    }
+.ba-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
-    #ba-img:hover {
-        filter: grayscale(0);
-        transform: scale(1.03);
-    }
+body {
+    background: rgb(221, 221, 221);
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ba-wrapper {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    padding: 32px 24px 24px 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -107,9 +104,6 @@
 }
 
 .ba-image-center {
-    width: 400px;
-    max-width: 90vw;
-    aspect-ratio: 4/3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,11 +111,39 @@
     overflow: hidden;
     box-shadow: 0 1px 8px rgba(0,0,0,0.04);
     background: #f8f8f8;
+    padding: 16px;
 }
 
 #ba-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    filter: grayscale(100%);
+    transition: filter 0.5s, transform 0.5s;
+}
+
+#ba-img:hover {
+    filter: grayscale(0);
+    transform: scale(1.05);
+}
+
+.glass-btn {
+    background: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    backdrop-filter: blur(8px);
+    color: #0078d4;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 1.15rem;
+    padding: 12px 36px;
+    border-radius: 16px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.glass-btn:hover {
+    background: rgba(0,120,212,0.15);
+    color: #005fa3;
+    box-shadow: 0 6px 32px rgba(0,120,212,0.12);
 }
