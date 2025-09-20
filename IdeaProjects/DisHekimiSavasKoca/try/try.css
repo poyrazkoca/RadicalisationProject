@@ -3,78 +3,78 @@
     height: 100%;
     object-fit: cover;
     display: block;
-
     body {
-        margin: 0;
+        background: #eaeaea;
         min-height: 100vh;
-        font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
-        background: #eaf3fa;
+        margin: 0;
+        font-family: 'Inter', 'Poppins', Arial, sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    .clinic-card {
+    .ba-wrapper {
         background: #fff;
-        border-radius: 18px;
-        box-shadow: 0 4px 24px rgba(0, 120, 212, 0.08);
-        padding: 32px 32px 24px 32px;
+        border-radius: 8px;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+        padding: 12px 8px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 24px;
-        max-width: 480px;
-        width: 100%;
+        gap: 12px;
+        min-width: 220px;
     }
 
-    .clinic-title {
-        font-size: 2rem;
-        font-weight: 600;
-        color: #0078d4;
-        margin-bottom: 8px;
-        letter-spacing: 0.5px;
-    }
-
-    .clinic-image-center {
-        width: 100%;
+    .ba-btn-group {
         display: flex;
         justify-content: center;
         align-items: center;
-        background: #f6fafd;
-        border-radius: 12px;
-        box-shadow: 0 1px 8px rgba(0,120,212,0.04);
-        padding: 16px;
+        margin-bottom: 8px;
+    }
+
+    .ba-btn {
+        padding: 4px 16px;
+        font-size: 0.95rem;
+        border: none;
+        border-radius: 5px;
+        background: #1976d2;
+        color: #fff;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow: none;
+        transition: background 0.2s;
+        min-width: 120px;
+    }
+    .ba-btn:hover {
+        background: #1565c0;
+    }
+
+    .ba-image-center {
+        width: 100vw;
+        max-width: 420px;
+        aspect-ratio: 4/3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: none;
+        background: #fafafa;
     }
 
     #ba-img {
-        max-width: 100%;
-        max-height: 320px;
-        border-radius: 10px;
-        box-shadow: 0 2px 16px rgba(0,120,212,0.07);
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
         filter: grayscale(100%);
         transition: filter 0.5s, transform 0.5s;
-        display: block;
+        background: none;
     }
+
     #ba-img:hover {
         filter: grayscale(0);
         transform: scale(1.03);
-    }
-
-    .clinic-btn {
-        padding: 10px 32px;
-        font-size: 1.1rem;
-        border: none;
-        border-radius: 8px;
-        background: #0078d4;
-        color: #fff;
-        font-weight: 600;
-        cursor: pointer;
-        box-shadow: 0 1px 4px rgba(0,120,212,0.08);
-        transition: background 0.2s;
-        margin-top: 12px;
-    }
-    .clinic-btn:hover {
-        background: #005fa3;
     }
     display: flex;
     flex-direction: column;
