@@ -2,13 +2,9 @@ const islemData = {
   implant: {
     title: 'İmplant',
     photos: [
-      'implant-before.jpg',
-      'implant-after.jpg',
-      'implant-step1.jpg',
-      'implant-step2.jpg',
-      'simante1.jpg',
-      'simante2.jpg',
-      'simante3.jpg'
+      'simante 1.jpg',
+      'simante 2.jpg',
+      'simante 3.jpg'
     ],
     details: `
       <h3>Sık Sorulan Sorular</h3>
