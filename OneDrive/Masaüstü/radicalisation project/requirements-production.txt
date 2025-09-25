@@ -1,0 +1,50 @@
+# Production Requirements
+# Core dependencies
+requests>=2.31.0
+pyyaml>=6.0.1
+python-dateutil>=2.8.2
+
+# Database
+sqlalchemy>=2.0.23
+psycopg2-binary>=2.9.9
+alembic>=1.13.1
+
+# API clients
+tweepy>=4.14.0
+praw>=7.7.1
+feedparser>=6.0.10
+
+# Async and performance
+aiohttp>=3.9.1
+asyncio-throttle>=1.0.2
+redis>=5.0.1
+
+# Caching and optimization
+pylru>=1.2.1
+ujson>=5.8.0
+
+# Monitoring and logging
+psutil>=5.9.6
+structlog>=23.2.0
+prometheus-client>=0.19.0
+
+# Security
+cryptography>=41.0.8
+python-dotenv>=1.0.0
+
+# Web framework (for health checks and API)
+flask>=3.0.0
+gunicorn>=21.2.0
+
+# Data processing
+pandas>=2.1.4
+numpy>=1.25.2
+
+# Testing (optional for production)
+pytest>=7.4.3
+pytest-asyncio>=0.21.1
+
+# Development tools (optional)
+black>=23.11.0
+flake8>=6.1.0
+mypy>=1.7.1

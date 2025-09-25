@@ -1,0 +1,35 @@
+[Unit]
+Description=Radicalization Research Data Collection Service
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=research
+Group=research
+WorkingDirectory=/opt/radicalization-research
+Environment=PYTHONPATH=/opt/radicalization-research
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/radicalization-research/venv/bin/python src/scheduler.py --daemon
+Restart=always
+RestartSec=10
+
+# Security measures
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/radicalization-research/data /opt/radicalization-research/output /opt/radicalization-research/logs
+
+# Resource limits
+LimitNOFILE=65536
+MemoryLimit=2G
+CPUQuota=200%
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=radicalization-research
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,204 @@
+# Configuration for Digital Radicalization Research Project
+
+# Scraping Configuration
+scraping:
+  delay_between_requests: 2      # Seconds between requests
+  max_retries: 3                 # Maximum retry attempts
+  timeout: 30                    # Request timeout in seconds
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+
+# Text Classification Configuration
+classification:
+  min_keyword_length: 3          # Minimum keyword length
+  case_sensitive: false          # Whether keyword matching is case sensitive
+  language_detection_threshold: 0.8  # Confidence threshold for language detection
+
+# Data Aggregation Configuration
+aggregation:
+  default_region_priority:       # Priority order for region aggregation
+    - "province"
+    - "language" 
+    - "country"
+  week_start_day: "monday"       # Week start day for aggregation
+  time_zone: "UTC"               # Default timezone
+
+# Output Configuration
+output:
+  format: "json"                 # Output format (json, csv)
+  include_raw_text: false        # Whether to include raw text in output
+  max_text_length: 500           # Maximum text length in output
+
+# Platform-specific Configuration
+platforms:
+  twitter:
+    enabled: true
+    rate_limit: 300              # Requests per 15 minutes (Academic: higher limits)
+    search_operators:
+      - "lang:tr"
+      - "lang:en" 
+      - "lang:ar"                # Arabic content
+    api_version: "2.0"
+    search_terms:               # Terms to search for (combined with keywords)
+      - "syria conflict"
+      - "PKK news"
+      - "terrorism turkey"
+      - "radical islam"
+      - "ISIS propaganda"
+    geographic_focus:
+      - "Turkey"
+      - "Syria" 
+      - "Iraq"
+      - "Germany"                # Turkish diaspora
+      - "France"                 # Turkish diaspora
+    tweet_fields:               # Additional data to collect
+      - "created_at"
+      - "author_id"
+      - "geo"
+      - "lang"
+      - "public_metrics"
+      - "context_annotations"
+  
+  reddit:
+    enabled: true
+    subreddits:
+      - "worldnews"
+      - "turkey"
+      - "europe"
+      - "syriancivilwar"
+      - "kurdistan"
+      - "syria"
+      - "islam"
+      - "exmuslim"              # Religious conversion discussions
+      - "conspiracy"            # Conspiracy theories
+      - "PoliticalDiscussion"
+    sort_by: "new"
+    limit: 100
+    time_filter: "week"         # week, month, year, all
+    include_comments: true      # Also analyze comments
+    min_score: 1               # Minimum upvotes
+  
+  telegram:                     # New platform for encrypted messaging
+    enabled: false              # Enable when you have bot token
+    channels:                   # Public channels to monitor
+      - "@channel_name_1"
+      - "@channel_name_2"
+    keywords_in_bio: true       # Search channel descriptions
+    max_messages: 100
+  
+  youtube:                      # Video platform monitoring
+    enabled: false              # Enable when you have API key
+    search_terms:
+      - "PKK propaganda"
+      - "ISIS recruitment"
+      - "radical islam turkey"
+    max_results: 50
+    include_comments: true
+    min_duration: 60            # Minimum video length in seconds
+  
+  forum:
+    enabled: true
+    sites:
+      - "eksisozluk.com"        # Turkish forum
+      - "incicaps.com"          # Turkish forum
+      - "reddit.com/r/conspiracy"
+    max_pages: 10
+    custom_selectors:           # CSS selectors for text extraction
+      eksisozluk.com: ".content"
+      incicaps.com: ".post-content"
+  
+  news:
+    enabled: true
+    sites:
+      # Turkish News Sites
+      - "hurriyet.com.tr"
+      - "sabah.com.tr"
+      - "cumhuriyet.com.tr"
+      - "sozcu.com.tr"
+      - "yenisafak.com"
+      - "milliyet.com.tr"
+      
+      # International News
+      - "bbc.com"
+      - "cnn.com" 
+      - "reuters.com"
+      - "aljazeera.com"
+      - "dw.com"                # Deutsche Welle (Turkish service)
+      
+      # Kurdish/Regional News
+      - "rudaw.net"
+      - "kurdistan24.net"
+    max_articles: 50
+    categories:                 # News categories to focus on
+      - "politics"
+      - "terrorism"
+      - "security"
+      - "international"
+    rss_feeds:                  # RSS feeds for real-time monitoring
+      - "https://www.hurriyet.com.tr/rss/gundem"
+      - "https://www.bbc.com/news/rss.xml"
+
+# Database Configuration (optional)
+database:
+  enabled: false
+  type: "sqlite"                 # sqlite, postgresql, mysql
+  connection_string: "data/radicalization.db"
+
+# Monitoring and Logging
+monitoring:
+  log_level: "INFO"              # DEBUG, INFO, WARNING, ERROR
+  max_log_size: "10MB"
+  backup_count: 5
+  metrics_enabled: true
+
+# Security Settings
+security:
+  api_key_file: "config/api_keys.env"  # Store API keys separately
+  data_encryption: false
+  anonymize_users: true          # Remove user identifiers from data
+
+# Regional Settings
+regions:
+  # Turkey NUTS-2 Regions
+  turkey_nuts2:
+    TR10: "Istanbul"
+    TR21: "Tekirdag, Edirne, Kirklareli"
+    TR22: "Balikesir, Canakkale"
+    TR31: "Izmir"
+    TR32: "Aydin, Denizli, Mugla"
+    TR33: "Manisa, Afyonkarahisar, Kutahya, Usak"
+    TR41: "Bursa, Eskisehir, Bilecik"
+    TR42: "Kocaeli, Sakarya, Duzce, Bolu, Yalova"
+    TR51: "Ankara"
+    TR52: "Konya, Karaman"
+    TR61: "Antalya, Isparta, Burdur"
+    TR62: "Adana, Mersin"
+    TR63: "Hatay, Kahramanmaras, Osmaniye"
+    TR71: "Kirikkale, Aksaray, Nigde, Nevsehir, Kirsehir"
+    TR72: "Kayseri, Sivas, Yozgat"
+    TR81: "Zonguldak, Karabuk, Bartin"
+    TR82: "Kastamonu, Cankiri, Sinop"
+    TR83: "Samsun, Tokat, Corum, Amasya"
+    TR90: "Trabzon, Ordu, Giresun, Rize, Artvin, Gumushane"
+    TRA1: "Erzurum, Erzincan, Bayburt"
+    TRA2: "Agri, Kars, Igdir, Ardahan"
+    TRB1: "Malatya, Elazig, Bingol, Tunceli"
+    TRB2: "Van, Mus, Bitlis, Hakkari"
+    TRC1: "Gaziantep, Adiyaman, Kilis"
+    TRC2: "Sanliurfa, Diyarbakir"
+    TRC3: "Mardin, Batman, Sirnak, Siirt"
+
+# Language Mappings
+languages:
+  detection_mapping:
+    tr: "TR"    # Turkish
+    en: "EN"    # English
+    el: "GR"    # Greek
+    de: "DE"    # German
+    fr: "FR"    # French
+    ar: "AR"    # Arabic
+    ku: "KU"    # Kurdish
+    
+  priority_order:
+    - "TR"      # Turkish (primary)
+    - "EN"      # English (secondary)
+    - "GR"      # Greek (tertiary)
