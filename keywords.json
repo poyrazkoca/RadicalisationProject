@@ -1,0 +1,10 @@
+{
+  "PKK_Related": {
+    "TR": ["PKK", "hendek savaşı", "direniş"],
+    "EN": ["PKK", "ditch war", "resistance"]
+  },
+  "Religious_Radical": {
+    "TR": ["hilafet", "şeriat", "cihad"],
+    "EN": ["caliphate", "sharia", "jihad"]
+  }
+}
