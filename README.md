@@ -1,4 +1,4 @@
-# Turkey Digital Radicalization Detection - Trial Version
+# Turkey Digital Radicalization Detection - Deneme Version
 
 ## Quick Start
 
