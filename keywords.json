@@ -1,10 +1,34 @@
 {
-  "PKK_Related": {
-    "TR": ["PKK", "hendek savaşı", "direniş"],
-    "EN": ["PKK", "ditch war", "resistance"]
+  "Violence_CallToAction": {
+    "EN": ["jihad", "kill", "attack", "martyr", "holy war", "war", "strike", "infidel", "crusader", "enemy", "blood", "revenge"],
+    "TR": ["cihat", "öldür", "saldırı", "şehit", "kutsal savaş", "savaş", "vur", "kafir", "haçlı", "düşman", "kan", "intikam"]
+  },
+  "Group_Identity": {
+    "EN": ["caliphate", "isis", "daesh", "al qaeda", "taliban", "sharia", "ummah", "white genocide", "great replacement", "race war", "1488", "14 words", "zionist occupation", "invaders"],
+    "TR": ["hilafet", "işid", "daeş", "el kaide", "taliban", "şeriat", "ümmet", "beyaz soykırım", "büyük değişim", "ırk savaşı", "1488", "14 söz", "siyonist işgal", "istilacılar"]
+  },
+  "Delegitimisation_Dehumanisation": {
+    "EN": ["traitor", "parasite", "cockroach", "vermin", "germ", "subhuman", "filth", "remnant of the sword"],
+    "TR": ["hain", "parazit", "hamamböceği", "haşere", "mikrop", "alt insan", "pislik", "kılıç artığı"]
+  },
+  "Conspiracy_Polarising": {
+    "EN": ["new world order", "globalist", "cultural marxism", "deep state", "great reset", "illuminati"],
+    "TR": ["yeni dünya düzeni", "küreselci", "kültürel marksizm", "derin devlet", "büyük reset", "illuminati"]
+  },
+  "Propaganda_Recruitment": {
+    "EN": ["join", "brotherhood", "awakening", "struggle", "victory", "resistance", "uprising", "devoting myself to this path"],
+    "TR": ["katıl", "kardeşlik", "uyanış", "mücadele", "zafer", "direniş", "isyan", "bu yola baş koydum"]
   },
   "Religious_Radical": {
-    "TR": ["hilafet", "şeriat", "cihad"],
-    "EN": ["caliphate", "sharia", "jihad"]
+    "EN": ["takbir", "takfir", "apostate"],
+    "TR": ["tekbir", "tekfir", "mürted"]
+  },
+  "PKK_Related": {
+    "EN": ["trench", "urban warfare", "liberated zone", "self-defense", "uprising"],
+    "TR": ["hendek", "şehir savaşı", "kurtarılmış bölge", "öz savunma", "serhildan"]
+  },
+  "Conversion_Identity": {
+    "EN": ["conversion", "embrace faith", "tawhid"],
+    "TR": ["din değiştirme", "iman et", "tevhid"]
   }
 }
