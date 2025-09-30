@@ -13,26 +13,26 @@ def main():
     print("🇹🇷 Turkey Digital Radicalization Detection - Starting Trial Run")
     print("=" * 60)
     
-    # Step 1: Web Scraping
+    # Step 1: Web Scraping Bölümü
     scraper = TurkeyScraper()
     posts = scraper.scrape_sample_forum()
     
-    # Step 2: Keyword Classification
+    # Step 2: Keyword Classification Bölümü
     classifier = KeywordClassifier()
     matches = classifier.classify_posts(posts)
     
-    # Step 3: Weekly Aggregation
+    # Step 3: Weekly Aggregation Bölümü
     aggregator = WeeklyAggregator()
     results = aggregator.aggregate(matches)
     
-    # Step 4: Output Results
+    # Step 4: Output Results Bölümü
     print("\n📋 FINAL RESULTS")
     print("=" * 60)
     
     if results:
         print(json.dumps(results, indent=2, ensure_ascii=False))
         
-        # Save to file
+        # Save to file oluşturma bölümü
         with open('turkey_results.json', 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2, ensure_ascii=False)
         print("\n💾 Results saved to 'turkey_results.json'")

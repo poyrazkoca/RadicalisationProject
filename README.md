@@ -1,7 +1,7 @@
 # Turkey Digital Radicalization Detection - Deneme Version
 
-## Quick Start
+## Hızlı Başlat
 
-1. **Install Dependencies**
+1. **Yükleme Bağımlılıkları**
    ```bash
    pip install -r requirements.txt
