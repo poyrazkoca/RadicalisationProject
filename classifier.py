@@ -29,6 +29,6 @@ class KeywordClassifier:
                                 'category': category
                             })
                             break  # One match per category per post
-        
+    
         print(f"✅ Found {len(matches)} keyword matches")
         return matches

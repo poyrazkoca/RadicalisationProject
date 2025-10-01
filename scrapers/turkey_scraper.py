@@ -64,9 +64,9 @@ class TurkeyScraper:
         return demo_posts
 
     def scrape_real_website(self, url):
-        """
-        Template for real scraping. Use this structure for actual implementation.
-        """
+        
+        #Template for real scraping. Use this structure for actual implementation.
+    
         try:
             response = requests.get(url, headers=self.headers)
             soup = BeautifulSoup(response.content, 'html.parser')
