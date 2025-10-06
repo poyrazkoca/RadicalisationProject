@@ -65,7 +65,7 @@ class TurkeyScraper:
 
     def scrape_real_website(self, url):
         
-        #Template for real scraping. Use this structure for actual implementation.
+        #Gerçek scraper için taslak. Use this structure for actual implementation.
     
         try:
             response = requests.get(url, headers=self.headers)
